@@ -12,7 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-
 public class MainActivity5 extends AppCompatActivity {
 
     @Override
@@ -27,19 +26,15 @@ public class MainActivity5 extends AppCompatActivity {
             return insets;
         });
 
-        TextView hadiahTextView = findViewById(R.id.hadiahTextView);
-        Button kembaliButton = findViewById(R.id.kembaliButton);
+        TextView pesananDiproses = findViewById(R.id.pesanan_diproses);
+        pesananDiproses.setText("PESANAN ANDA SEDANG DI PROSES");
 
-
-        Intent intent = getIntent();
-        String hadiah = intent.getStringExtra("hadiah");
-        hadiahTextView.setText("Anda mendapatkan: " + hadiah);
-
-        kembaliButton.setOnClickListener(new View.OnClickListener() {
+        Button tombolKembali = findViewById(R.id.tombol_kembali);
+        tombolKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity5.this, MainActivity4.class);
+                Intent intent = new Intent(MainActivity5.this, MainActivity2.class);
                 startActivity(intent);
             }
         });

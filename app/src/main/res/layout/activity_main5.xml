@@ -9,22 +9,23 @@
     android:background="@color/navy">
 
     <TextView
-        android:id="@+id/hadiahTextView"
+        android:id="@+id/pesanan_diproses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/kembaliButton"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/kembaliButton"
+        android:id="@+id/tombol_kembali"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kembali ke Menu Utama"
+        android:text="Kembali"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pesanan_diproses" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,88 +1,68 @@
 package com.example.sahyupedia;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.Random;
-
 public class MainActivity4 extends AppCompatActivity {
 
-    private Button gachaButton;
-    private TextView diamondCountTextView;
-    private int diamondCount = 100;
-    private Button kembaliButton;
+    TextView tvNamaBarangHeader, tvNamaBarang, tvJumlah;
+    ImageView ivBarang;
+    EditText etNamaBarang, etJumlah;
+    Button btnBeli;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main4);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        gachaButton = findViewById(R.id.gachaButton);
-        diamondCountTextView = findViewById(R.id.diamondCountTextView);
-        kembaliButton = findViewById(R.id.bckButton);
-        updateDiamondCount();
+        tvNamaBarangHeader = findViewById(R.id.textView);
+        ivBarang = findViewById(R.id.imageView);
+        tvNamaBarang = findViewById(R.id.textView2);
+        etNamaBarang = findViewById(R.id.editText);
+        tvJumlah = findViewById(R.id.textView3);
+        etJumlah = findViewById(R.id.editText2);
+        btnBeli = findViewById(R.id.button);
 
-        gachaButton.setOnClickListener(new View.OnClickListener() {
+
+
+        tvNamaBarangHeader.setText("Raket");
+        tvNamaBarang.setText("Alamat");
+        ivBarang.setImageResource(R.drawable.raket1);
+
+
+        btnBeli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                performGacha();
+                String namaBarang = etNamaBarang.getText().toString();
+                String jumlahString = etJumlah.getText().toString();
+
+                if (namaBarang.isEmpty() || jumlahString.isEmpty()) {
+                    Toast.makeText(MainActivity4.this, "Silahkan isi nama barang dan jumlah", Toast.LENGTH_SHORT).show();
+                    return; // Stop further execution
+                }
+
+                int jumlah = Integer.parseInt(jumlahString);
+
+
+                String message = "Anda membeli " + jumlah + " " + namaBarang;
+
+                    Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
+                    startActivity(intent);
+
+
+                etNamaBarang.setText("");
+                etJumlah.setText("");
+
             }
         });
-
-        kembaliButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity4.this, MainActivity2.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-
-    private void performGacha() {
-        if (diamondCount >= 10) {
-            diamondCount -= 10;
-            updateDiamondCount();
-
-            Random random = new Random();
-            int randomNumber = random.nextInt(100);
-
-            Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
-
-            if (randomNumber < 50) {
-                intent.putExtra("hadiah", "Hadiah 1 (Common)");
-            } else if (randomNumber < 80) {
-                intent.putExtra("hadiah", "Hadiah 2 (Uncommon)");
-            } else if (randomNumber < 95) {
-                intent.putExtra("hadiah", "Hadiah 3 (Rare)");
-            } else {
-                intent.putExtra("hadiah", "Hadiah 4 (Legendary)");
-            }
-
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Diamond tidak cukup!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void updateDiamondCount() {
-        diamondCountTextView.setText("Diamond: " + diamondCount);
     }
 }

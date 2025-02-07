@@ -10,5 +10,13 @@
     <color name="navy">#181D31</color>
     <color name="tosca">#678983</color>
     <color name="cream">#E6DDC4</color>
-
+    <color name="grey_dark">#131313</color>
+    <color name="grey_card">#201F1F</color>
+    <color name="yellow">#FDFD1F</color>
+    <color name="white_blur">#BDBDBD</color>
+    <color name="dark_yellow">#060604</color>
+    <color name="dark_card">#16140C</color>
+    <color name="dark_card2">#373737</color>
+    <color name="text_secondary">#8B8B8B</color>
+    <color name="accent">#F5A91B</color>
 </resources>
